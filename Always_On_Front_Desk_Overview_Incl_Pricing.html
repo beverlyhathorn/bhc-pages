@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Always On Front Desk – Leave Behind</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #6899ca;
+    --blue-dark: #4d7bae;
+    --gold: #ba8b5b;
+    --slate: #6d787e;
+    --light-bg: #f7f8f9;
+    --white: #ffffff;
+    --text-dark: #2c3338;
+  }
+
+  @page {
+    size: letter;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: #e8ecef;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .page {
+    width: 816px;
+    background: white;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--blue);
+    padding: 44px 52px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 30%;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .header-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 14px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    line-height: 1.2;
+    max-width: 520px;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gold-rule {
+    width: 64px;
+    height: 3px;
+    background: var(--gold);
+    margin-top: 4px;
+  }
+
+  /* ── BODY ── */
+  .body {
+    padding: 0 52px 0;
+    background: white;
+  }
+
+  /* ── SECTION LAYOUT ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .section {
+    padding: 32px 0;
+  }
+
+  .section + .section {
+    border-top: 1px solid #eaecee;
+  }
+
+  .two-col .section:first-child {
+    padding-right: 36px;
+    border-right: 1px solid #eaecee;
+  }
+
+  .two-col .section:last-child {
+    padding-left: 36px;
+  }
+
+  .section-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .section h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  .section p {
+    font-size: 11.5px;
+    color: var(--slate);
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+
+  .section p:last-child { margin-bottom: 0; }
+
+  /* ── CHALLENGE LIST ── */
+  .challenge-list {
+    list-style: none;
+    margin: 10px 0 14px;
+  }
+
+  .challenge-list li {
+    font-size: 11.5px;
+    color: var(--slate);
+    padding: 5px 0 5px 18px;
+    position: relative;
+    line-height: 1.5;
+    border-bottom: 1px solid #f0f2f3;
+  }
+
+  .challenge-list li:last-child { border-bottom: none; }
+
+  .challenge-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ── SOLUTION FLOW ── */
+  .flow-block {
+    background: var(--light-bg);
+    border-left: 3px solid var(--blue);
+    padding: 14px 16px;
+    margin: 12px 0;
+    font-size: 11px;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+
+  .flow-block strong {
+    display: block;
+    color: var(--text-dark);
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .intake-items {
+    list-style: none;
+    margin-top: 6px;
+  }
+
+  .intake-items li {
+    font-size: 11px;
+    color: var(--slate);
+    padding: 2px 0 2px 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .intake-items li::before {
+    content: '•';
+    position: absolute;
+    left: 4px;
+    color: var(--blue);
+    font-size: 10px;
+  }
+
+  /* ── SERVICE SUMMARY CARD ── */
+  .summary-card {
+    border: 1.5px solid #dce1e5;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 14px 0;
+  }
+
+  .summary-card-header {
+    background: var(--blue);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .summary-card-header span {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+  }
+
+  .urgent-badge {
+    background: var(--gold);
+    color: white;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+  }
+
+  .summary-card-body {
+    padding: 12px 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 24px;
+  }
+
+  .summary-field {
+    font-size: 10px;
+    color: var(--slate);
+    line-height: 1.4;
+  }
+
+  .summary-field span {
+    display: block;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #aab0b5;
+    margin-bottom: 1px;
+  }
+
+  .summary-tagline {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--blue);
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding-top: 10px;
+    border-top: 1px solid #eaecee;
+    margin-top: 6px;
+  }
+
+  /* ── BENEFITS LIST ── */
+  .benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid #f0f2f3;
+    font-size: 11px;
+    color: var(--slate);
+    line-height: 1.5;
+  }
+
+  .benefit-item:last-child { border-bottom: none; }
+
+  .check {
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── INVESTMENT ── */
+  .investment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 12px 0;
+  }
+
+  .investment-item {
+    border: 1.5px solid var(--gold);
+    border-radius: 4px;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .investment-item .price {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--blue);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .investment-item .price-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .investment-item .price-desc {
+    font-size: 10px;
+    color: var(--slate);
+    line-height: 1.5;
+  }
+
+  /* ── IDEAL FOR ── */
+  .ideal-list {
+    list-style: none;
+  }
+
+  .ideal-list li {
+    font-size: 11px;
+    color: var(--slate);
+    padding: 6px 0 6px 18px;
+    position: relative;
+    line-height: 1.5;
+    border-bottom: 1px solid #f0f2f3;
+  }
+
+  .ideal-list li:last-child { border-bottom: none; }
+
+  .ideal-list li::before {
+    content: '›';
+    position: absolute;
+    left: 2px;
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  /* ── CTA ── */
+  .cta {
+    background: var(--blue);
+    padding: 32px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    bottom: -50px; right: -30px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .cta-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-gold-rule {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .cta h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+
+  .cta p {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+    max-width: 380px;
+  }
+
+  .contact-block {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .contact-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 2px;
+  }
+
+  .contact-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 12px;
+  }
+
+  .contact-detail {
+    font-size: 11px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.8;
+  }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 0 52px;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Always On Front Desk</div>
+    <h1>Structured Call Coverage for Growing HVAC Companies</h1>
+    <div class="gold-rule"></div>
+  </div>
+
+  <!-- GOLD DIVIDER -->
+  <div class="gold-divider"></div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- ROW 1: Challenge + Solution -->
+    <div class="two-col">
+
+      <!-- CHALLENGE -->
+      <div class="section">
+        <div class="section-label">The Operational Challenge</div>
+        <h2>Missed Calls Cost More Than You Think</h2>
+        <p>During peak season and after-hours, HVAC companies commonly experience:</p>
+        <ul class="challenge-list">
+          <li>Missed emergency calls</li>
+          <li>Overloaded office staff</li>
+          <li>Unstructured voicemail messages</li>
+          <li>Delayed callbacks</li>
+          <li>Lost revenue opportunities</li>
+        </ul>
+        <p>When a homeowner calls with no heat or no cooling, response time directly impacts trust — and revenue.</p>
+      </div>
+
+      <!-- SOLUTION -->
+      <div class="section">
+        <div class="section-label">The Structured Solution</div>
+        <h2>Intelligent Overflow & After-Hours Coverage</h2>
+        <p>Calls ring to your office first. If unanswered, the call routes to a professional virtual front desk that:</p>
+
+        <div class="flow-block">
+          <strong>Every Call Is Handled With Structure</strong>
+          <ul class="intake-items">
+            <li>Greets callers immediately</li>
+            <li>Identifies the issue</li>
+            <li>Tags urgency — no heat / no AC marked urgent</li>
+            <li>Captures property type and city</li>
+            <li>Confirms callback number</li>
+            <li>Collects availability windows</li>
+          </ul>
+        </div>
+
+        <p>A structured service summary is delivered to your team <strong>instantly.</strong></p>
+      </div>
+
+    </div>
+
+    <!-- DIVIDER -->
+    <div style="border-top: 1px solid #eaecee;"></div>
+
+    <!-- ROW 2: What Your Office Receives + Designed to Support -->
+    <div class="two-col">
+
+      <!-- SUMMARY CARD -->
+      <div class="section">
+        <div class="section-label">What Your Office Receives</div>
+        <h2>Action-Ready Service Summaries</h2>
+
+        <div class="summary-card">
+          <div class="summary-card-header">
+            <span>New HVAC Service Request</span>
+            <span class="urgent-badge">Urgent</span>
+          </div>
+          <div class="summary-card-body">
+            <div class="summary-field"><span>Name</span>Caller Full Name</div>
+            <div class="summary-field"><span>Phone</span>Callback Number</div>
+            <div class="summary-field"><span>Property Type</span>Residential / Commercial</div>
+            <div class="summary-field"><span>City</span>Service Location</div>
+            <div class="summary-field"><span>Issue Summary</span>No Heat / No AC / Other</div>
+            <div class="summary-field"><span>Urgency Level</span>Urgent / Standard</div>
+            <div class="summary-field"><span>Availability</span>Preferred Window</div>
+            <div class="summary-field"><span>Time of Call</span>Auto-Stamped</div>
+          </div>
+          <div style="padding: 0 16px 12px;">
+            <div class="summary-tagline">Clear. Organized. Action-Ready.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BENEFITS + INVESTMENT -->
+      <div class="section">
+        <div class="section-label">Designed to Support — Not Replace — Your Team</div>
+        <h2>Protects the Gaps Without Disruption</h2>
+
+        <div class="benefit-item"><span class="check">✔</span> Maintains your existing phone number</div>
+        <div class="benefit-item"><span class="check">✔</span> Activates only when calls go unanswered</div>
+        <div class="benefit-item"><span class="check">✔</span> Works 24/7, every day of the year</div>
+        <div class="benefit-item"><span class="check">✔</span> Reduces missed emergency revenue</div>
+        <div class="benefit-item"><span class="check">✔</span> Structured intake without additional hiring</div>
+
+        <p style="margin-top: 14px; font-size: 10.5px; color: var(--slate); font-style: italic;">Your office continues operating normally. This protects the gaps.</p>
+      </div>
+
+    </div>
+
+    <!-- DIVIDER -->
+    <div style="border-top: 1px solid #eaecee;"></div>
+
+    <!-- ROW 3: Investment + Ideal For -->
+    <div class="two-col">
+
+      <div class="section">
+        <div class="section-label">Investment</div>
+        <h2>Simple, Transparent Pricing</h2>
+
+        <div class="investment-grid">
+          <div class="investment-item">
+            <div class="price">$750</div>
+            <div class="price-label">Setup & Configuration</div>
+            <div class="price-desc">Workflow design, intake customization, and onboarding</div>
+          </div>
+          <div class="investment-item">
+            <div class="price">$197</div>
+            <div class="price-label">Per Month</div>
+            <div class="price-desc">Ongoing monitoring, optimization & performance tuning</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Ideal For HVAC Companies That:</div>
+        <h2>Built for Operations-Focused Teams</h2>
+        <ul class="ideal-list">
+          <li>Experience seasonal call volume spikes</li>
+          <li>Want professional after-hours coverage</li>
+          <li>Value structured, consistent intake</li>
+          <li>Want to protect emergency service revenue</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- ROW 4: Onboarding Timeline -->
+    <div style="border-top: 1px solid #eaecee;"></div>
+    <div style="padding: 32px 0;">
+      <div class="section-label">Onboarding Timeline</div>
+      <h2 style="font-size: 16px; font-weight: 700; color: var(--blue); margin-bottom: 18px;">Fully Operational in 3–5 Business Days</h2>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1.5px solid #dce1e5; border-radius: 4px; overflow: hidden;">
+        <div style="padding: 16px; border-right: 1px solid #eaecee;">
+          <div style="width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: white; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">1</div>
+          <div style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 5px;">Day 1</div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;">Discovery &amp; Intake Design</div>
+          <div style="font-size: 10.5px; color: var(--slate); line-height: 1.65;">We collect your hours, service area, routing preferences, and urgency criteria. A 30–45 minute working session.</div>
+        </div>
+        <div style="padding: 16px; border-right: 1px solid #eaecee;">
+          <div style="width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: white; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">2</div>
+          <div style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 5px;">Days 2–3</div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;">Build &amp; Configuration</div>
+          <div style="font-size: 10.5px; color: var(--slate); line-height: 1.65;">Your AI receptionist is scripted, built, and tested. Call flow, urgency tagging, intake questions, and transfer rules are configured.</div>
+        </div>
+        <div style="padding: 16px; border-right: 1px solid #eaecee;">
+          <div style="width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: white; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">3</div>
+          <div style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 5px;">Day 4</div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;">Review &amp; Approval</div>
+          <div style="font-size: 10.5px; color: var(--slate); line-height: 1.65;">You listen to a live test call. We adjust tone, phrasing, or flow based on your feedback. Nothing goes live until you approve it.</div>
+        </div>
+        <div style="padding: 16px;">
+          <div style="width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: white; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">4</div>
+          <div style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 5px;">Day 5</div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;">Go Live</div>
+          <div style="font-size: 10.5px; color: var(--slate); line-height: 1.65;">Your Always On Front Desk is active. Your first performance check-in is delivered within 30 days.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW 5: Contract Terms -->
+    <div style="border-top: 1px solid #eaecee;"></div>
+    <div style="padding: 32px 0;">
+      <div class="section-label">Commitment &amp; Terms</div>
+      <h2 style="font-size: 16px; font-weight: 700; color: var(--blue); margin-bottom: 14px;">Simple Terms. No Surprises.</h2>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+        <div style="border: 1.5px solid var(--gold); border-radius: 4px; padding: 14px; text-align: center;">
+          <div style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 5px;">Minimum Term</div>
+          <div style="font-size: 15px; font-weight: 800; color: var(--blue); margin-bottom: 5px;">3 Months</div>
+          <div style="font-size: 10px; color: var(--slate); line-height: 1.5;">Allows time to configure, optimize, and measure real results.</div>
+        </div>
+        <div style="border: 1.5px solid var(--gold); border-radius: 4px; padding: 14px; text-align: center;">
+          <div style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 5px;">After Initial Term</div>
+          <div style="font-size: 15px; font-weight: 800; color: var(--blue); margin-bottom: 5px;">Month-to-Month</div>
+          <div style="font-size: 10px; color: var(--slate); line-height: 1.5;">Cancel anytime with 30 days written notice.</div>
+        </div>
+        <div style="border: 1.5px solid var(--gold); border-radius: 4px; padding: 14px; text-align: center;">
+          <div style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 5px;">Setup Fee</div>
+          <div style="font-size: 15px; font-weight: 800; color: var(--blue); margin-bottom: 5px;">Non-Refundable</div>
+          <div style="font-size: 10px; color: var(--slate); line-height: 1.5;">Covers design, build, and onboarding. Billed at project start.</div>
+        </div>
+        <div style="border: 1.5px solid var(--gold); border-radius: 4px; padding: 14px; text-align: center;">
+          <div style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 5px;">Retainer Billing</div>
+          <div style="font-size: 15px; font-weight: 800; color: var(--blue); margin-bottom: 5px;">Monthly</div>
+          <div style="font-size: 10px; color: var(--slate); line-height: 1.5;">Begins after go-live. Prorated for partial first months.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- GOLD DIVIDER -->
+  <div class="gold-divider"></div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="cta-inner">
+      <div>
+        <div class="cta-gold-rule"></div>
+        <h3>Schedule a 10-Minute Demonstration</h3>
+        <p>Hear exactly how your customers would experience overflow coverage — before committing to anything.</p>
+      </div>
+      <div class="contact-block">
+        <div class="contact-name">Beverly Hathorn</div>
+        <div class="contact-title">Always On Front Desk</div>
+        <div class="contact-detail">
+          (770) 367-9914<br>
+          <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2d0d7c4d7c0decbf2d0d7c4d7c0decbdad3c6daddc0dcd1dddcc1c7dec6dbdcd59cd1dddf">[email&#160;protected]</a><br>
+          <a href="https://beverlyhathorn.github.io/bhc-pages/home-services.html" style="color: rgba(255,255,255,0.85); text-decoration: none;">beverlyhathornconsulting.com</a><br>
+          <a href="https://calendly.com/beverlyhathornconsulting/20-minute-strategy-call-beverly-hathorn-consulting" style="color: white; font-weight: 600; font-size: 10.5px; text-decoration: none; letter-spac
