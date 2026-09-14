@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beverly Hathorn Consulting · Never Miss Another Service Call</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F2EC;
+      --ink: #1A1714;
+      --ink-light: #4A4540;
+      --ink-faint: #8A837C;
+      --blue: #6899ca;
+      --blue-dark: #4d7db3;
+      --blue-tint: #eef3f9;
+      --rule: #D8D2C8;
+    }
+
+    html { font-size: 18px; scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--ink);
+      font-family: 'Source Sans 3', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Brand bar ── */
+    .brand-bar {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 4px;
+      background: var(--blue);
+    }
+
+    /* ── Site header ── */
+    header {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 680px;
+      padding: 28px 32px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-name {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .brand-name span {
+      color: var(--blue);
+    }
+
+    /* ── Main ── */
+    main {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 680px;
+      padding: 64px 32px 120px;
+    }
+
+    /* ── Animations ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.3s; }
+    .d3 { animation-delay: 0.5s; }
+    .d4 { animation-delay: 0.65s; }
+    .d5 { animation-delay: 0.8s; }
+    .d6 { animation-delay: 0.95s; }
+    .d7 { animation-delay: 1.1s; }
+    .d8 { animation-delay: 1.25s; }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 36px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--blue);
+    }
+
+    .rule {
+      width: 48px;
+      height: 2px;
+      background: var(--blue);
+      margin-bottom: 36px;
+    }
+
+    .body-block {
+      color: var(--ink-light);
+      font-size: 1.05rem;
+      line-height: 1.78;
+      margin-bottom: 28px;
+    }
+
+    .arrow-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+    }
+    .arrow-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--ink-light);
+      margin-bottom: 10px;
+    }
+    .arrow-list li::before {
+      content: '→';
+      color: var(--ink);
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 28px;
+    }
+    .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--ink-light);
+      margin-bottom: 10px;
+    }
+    .dot {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .dot::after {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: var(--blue);
+      border-radius: 50%;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 48px 0;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 18px;
+    }
+
+    .trust-anchor {
+      background: var(--blue-tint);
+      border-left: 3px solid var(--blue);
+      padding: 22px 26px;
+      margin: 32px 0;
+      color: var(--ink-light);
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+    .trust-anchor strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .callout {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 36px 40px;
+      margin: 52px 0;
+      position: relative;
+    }
+    .callout::before {
+      content: '"';
+      position: absolute;
+      top: -14px;
+      left: 40px;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .callout p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      line-height: 1.65;
+      font-style: italic;
+    }
+    .callout .attribution {
+      font-family: 'Source Sans 3', sans-serif;
+      font-style: normal;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-top: 18px;
+    }
+
+    /* ── Beverly bio block ── */
+    .bio-block {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 32px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 52px;
+    }
+
+    .bio-photo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid var(--blue);
+    }
+    .bio-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .bio-text {
+      padding-top: 4px;
+    }
+
+    .bio-name {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 8px;
+    }
+
+    .bio-text p {
+      font-size: 1rem;
+      line-height: 1.72;
+      color: var(--ink-light);
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      margin-top: 16px;
+    }
+    .cta-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 24px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 20px 52px;
+      border: 2px solid var(--blue);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+    .cta-btn:hover {
+      background: var(--blue-dark);
+      border-color: var(--blue-dark);
+    }
+    .cta-btn:active { transform: scale(0.98); }
+
+    .cta-sub {
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+      margin-top: 16px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--rule);
+      width: 100%;
+      max-width: 680px;
+      padding: 28px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 480px) {
+      header { padding: 24px 24px 0; }
+      main { padding: 52px 24px 80px; }
+      .callout { padding: 32px 24px; }
+      .bio-block { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="brand-bar"></div>
+
+<header>
+  <a href="https://www.beverlyhathornconsulting.com" target="_blank" rel="noopener" class="brand-name">Beverly Hathorn <span>Consulting</span></a>
+</header>
+
+<main>
+
+  <p class="eyebrow reveal d1">Call Handling Systems · Home Services</p>
+
+  <h1 class="reveal d2">Never Miss<br>Another <em>Service Call.</em></h1>
+
+  <div class="rule reveal d3"></div>
+
+  <div class="body-block reveal d3">
+    <p>During peak hours, lunch breaks, evenings, and weekends — calls go unanswered. And when a call goes unanswered, the job doesn't wait.</p>
+    <ul class="arrow-list" style="margin-top: 20px;">
+      <li>A lost service job</li>
+      <li>A competitor booking first</li>
+      <li>Revenue that never returns</li>
+    </ul>
+  </div>
+
+  <hr class="reveal d3">
+
+  <p class="section-label reveal d4">How It Works</p>
+
+  <div class="body-block reveal d4">
+    <p>I help home service businesses set up smart call handling systems that keep the phones covered — without adding staff or changing how you operate.</p>
+  </div>
+
+  <ul class="check-list reveal d4">
+    <li><span class="dot"></span> Calls answered instantly, any hour, any day</li>
+    <li><span class="dot"></span> Appointment requests captured without a live agent</li>
+    <li><span class="dot"></span> Urgent jobs routed to the right person immediately</li>
+    <li><span class="dot"></span> Seamless after-hours coverage, no extra headcount</li>
+    <li><span class="dot"></span> Less pressure on your front desk during busy hours</li>
+  </ul>
+
+  <div class="trust-anchor reveal d5">
+    <strong>You stay in control.</strong> The system handles the overflow — you handle the relationship. Your team still runs the business. Nothing changes about how you work with customers. If it's not the right fit, I'll tell you that too.
+  </div>
+
+  <div class="body-block reveal d5">
+    <p>This isn't complicated software and it doesn't replace your people. It's a practical layer that protects the revenue you're already working to earn.</p>
+  </div>
+
+  <div class="callout reveal d6">
+    <p>I work with owners to evaluate where revenue is leaking and put the right system in place for their workflow. I don't sell software — I help you find and implement what actually fits your business.</p>
+    <p class="attribution">The Strategist, Not the Tool</p>
+  </div>
+
+  <!-- Beverly bio — grounded, outcome-led, no over-claiming -->
+  <div class="bio-block reveal d7">
+    <div class="bio-photo"><img src="https://beverlyhathorn.github.io/bhc-pages/Beverly%20-%20Blue%20Blouse.png" alt="Beverly Hathorn" /></div>
+    <div class="bio-text">
+      <p class="bio-name">Beverly Hathorn · Consultant</p>
+      <p>I'm Beverly — I work with business owners to find where revenue is slipping and put the right systems in place to stop it. Before we talk about any solution, we talk about your operation.</p>
+    </div>
+  </div>
+
+  <hr class="reveal d7">
+
+  <p class="section-label reveal d7">Common Questions</p>
+
+  <div class="reveal d7" style="margin-bottom: 48px;">
+
+    <div style="border-top: 1px solid var(--rule);">
+
+      <div style="border-bottom: 1px solid var(--rule); padding: 20px 0;">
+        <p style="font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Will it sound robotic or fake?</p>
+        <p style="font-size: 0.95rem; color: var(--ink-light); line-height: 1.75; margin: 0;">No. The voice is conversational and professional — not a phone tree. Callers are greeted naturally, asked relevant questions, and handled with the same tone your office would use. Before going live, you listen to a full test call and approve how it sounds. Nothing goes active until you're satisfied.</p>
+      </div>
+
+      <div style="border-bottom: 1px solid var(--rule); padding: 20px 0;">
+        <p style="font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 8px;">What happens during setup?</p>
+        <p style="font-size: 0.95rem; color: var(--ink-light); line-height: 1.75; margin: 0;">Setup takes 3–5 business days. We collect your business hours, service area, call routing preferences, and urgency criteria. Then we build and test the system. On day four, you review a live test call and request any adjustments. On day five, you go live. No technical work is required on your end.</p>
+      </div>
+
+      <div style="border-bottom: 1px solid var(--rule); padding: 20px 0;">
+        <p style="font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Can I cancel anytime?</p>
+        <p style="font-size: 0.95rem; color: var(--ink-light); line-height: 1.75; margin: 0;">After the initial 3-month term, yes — with 30 days written notice. The 3-month minimum exists to give the system enough time to be properly configured and deliver measurable results. After that, your continued engagement is your choice.</p>
+      </div>
+
+      <div style="border-bottom: 1px solid var(--rule); padding: 20px 0;">
+        <p style="font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 8px;">What if a caller has a complex issue the AI can't handle?</p>
+        <p style="font-size: 0.95rem; color: var(--ink-light); line-height: 1.75; margin: 0;">The system is configured with clear transfer and escalation rules. If a situation falls outside the intake script — or a caller requests to speak with a person — the call is transferred or flagged immediately. It's designed to know its limits.</p>
+      </div>
+
+      <div style="border-bottom: 1px solid var(--rule); padding: 20px 0;">
+        <p style="font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Will it work with my existing phone number?</p>
+        <p style="font-size: 0.95rem; color: var(--ink-light); line-height: 1.75; margin: 0;">Yes. Your existing number stays in place. Calls ring to your office first. If unanswered, they route to the AI receptionist. There is no number change and no disruption to how your team currently operates.</p>
+      </div>
+
+      <div style="border-bottom: 1px solid var(--rule); padding: 20px 0;">
+        <p style="font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 8px;">How do I know it's working?</p>
+        <p style="font-size: 0.95rem; color: var(--ink-light); line-height: 1.75; margin: 0;">Every month you receive a performance summary showing total calls handled, urgency breakdown, average call duration, and key trends. Ongoing monitoring is included in your retainer — you're never left wondering what's happening in the background.</p>
+      </div>
+
+      <div style="padding: 20px 0;">
+        <p style="font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Who will manage it?</p>
+        <p style="font-size: 0.95rem; color: var(--ink-light); line-height: 1.75; margin: 0;">Beverly Hathorn manages your system directly. You are not handed off to a support team or a ticketing system. Configuration updates, script refinements, and monthly reviews are handled personally as part of your ongoing retainer.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cta-section reveal d8">
+    <p class="cta-label">Ready to stop losing calls?</p>
+    <a href="https://beverlyhathornconsulting.hbportal.co/schedule/65a0088d16718c002431d2af" target="_blank" rel="noopener" class="cta-btn">Book a 20-Minute Call</a>
+    <p class="cta-sub">No pitch. No pressure. Just a direct conversation about your operation.</p>
+  </div>
+
+</main>
+
+<footer>
+  &copy; 2025 Beverly Hathorn Consulting
+</footer>
+
+</body>
+</html>
